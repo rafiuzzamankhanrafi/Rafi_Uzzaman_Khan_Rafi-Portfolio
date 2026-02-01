@@ -100,11 +100,11 @@
             letter-spacing: 3px; margin-bottom: 20px; display: block;
         }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
         
         .card {
             background: rgba(255, 255, 255, 0.02);
-            padding: 30px; border-radius: 18px;
+            padding: 25px; border-radius: 18px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
             text-decoration: none; color: inherit; display: block;
@@ -173,7 +173,7 @@
             </div>
             <span class="section-label">Biography</span>
             <p style="font-size: 16px; line-height: 1.8; color: var(--muted);">
-                I am Rafi Uzzaman Khan Rafi, a dedicated Junior Pentester and Bug Hunter with practical experience in web application security and vulnerability assessment. I have completed my internship as a Junior Red Team Analyst, where I worked with offensive security techniques to simulate real-world attacks and evaluate organizational defenses. <br> <br>
+                I am Rafi Uzzaman Khan Rafi, a dedicated Junior Pentester and Bug Hunter with practical experience in web application security and vulnerability assessment. I have completed my internship as a Junior Red Team Analyst, where I worked with offensive security techniques to simulate real-world attacks and evaluate organizational defenses. <br><br>
                 I am driven by a strong interest in red teaming, penetration testing, and continuous learning in cybersecurity, always adhering to ethical and legal standards.
             </p>
         </div>
@@ -298,6 +298,7 @@
                 <a href="mailto:rafiuzzamankhanrafi@gmail.com" class="card"><i data-lucide="mail"></i><h3>Email</h3></a>
                 <a href="https://www.linkedin.com/in/rafiuzzamankhanrafi" target="_blank" class="card"><i data-lucide="linkedin"></i><h3>LinkedIn</h3></a>
                 <a href="https://github.com/rafiuzzamankhanrafi" target="_blank" class="card"><i data-lucide="github"></i><h3>GitHub</h3></a>
+                <a href="https://x.com/rafi_uzzamam" target="_blank" class="card"><i data-lucide="twitter"></i><h3>X (Twitter)</h3></a>
                 <a href="https://t.me/Rafi_Uzzaman_Khan_Rafi" target="_blank" class="card"><i data-lucide="send"></i><h3>Telegram</h3></a>
             </div>
         </div>
@@ -306,25 +307,20 @@
     <script>
         lucide.createIcons();
         
-        // Matrix Animation Logic
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
-
-        function setCanvasSize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            columns = canvas.width / fontSize;
-            drops = Array(Math.floor(columns)).fill(1);
-        }
-
         const chars = "0101RAFI0101SECURE0101HACK";
         const fontSize = 15;
         let columns, drops;
 
-        // Initial setup
-        setCanvasSize();
+        function setCanvasSize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            columns = Math.floor(canvas.width / fontSize);
+            drops = Array(columns).fill(1);
+        }
 
-        // Listen for browser resize
+        setCanvasSize();
         window.addEventListener('resize', setCanvasSize);
 
         function draw() {
