@@ -148,11 +148,11 @@
             <div class="rk-box">Rk</div>
             <div class="title-text">
                 <h1>Rafi Uzzaman Khan Rafi</h1>
-                <p>Jr. Web Application Pentester | Bug Hunter </p>
+                <p>Jr. Web Application Pentester | Bug Hunter</p>
             </div>
         </div>
         <nav id="navbar">
-            <a onclick="showPage('about')" id="nav-about" class="active">About</a>
+            <a onclick="showPage('about')" id="nav-about">About</a>
             <a onclick="showPage('skills')" id="nav-skills">Skills</a>
             <a onclick="showPage('experience')" id="nav-experience">Experience</a>
             <a onclick="showPage('projects')" id="nav-projects">Projects</a>
@@ -163,7 +163,7 @@
     </header>
 
     <main>
-        <div id="about" class="page active">
+        <div id="about" class="page">
             <div class="profile-header">
                 <div class="rk-box" style="width: 60px; height: 60px; font-size: 24px;">Rk</div>
                 <div class="profile-info">
@@ -272,21 +272,21 @@
                     <a href="https://drive.google.com/file/d/1qc9oJtA3vEnRE2CBZV6u_NGrDIVw1mPK/view?usp=drive_link" target="_blank" class="btn">VIEW CERTIFICATE</a>
                 </div>
                 <div class="card">
-                    <i data-lucide="monitor"></i>
+                    <i data-lucide="terminal"></i>
                     <h3>Ethically Hack the Planet: Part-2</h3>
                     <p>Offensive Security and Ethical Hacking - Udemy.</p>
                     <a href="https://drive.google.com/file/d/1Qg9OWTuR0_tSC18zxRf_viTp-Xg-XN_w/view?usp=drive_link" target="_blank" class="btn">VIEW CERTIFICATE</a>
                 </div>
                 <div class="card">
-                    <i data-lucide="monitor"></i>
-                    <h3>Pentesting 101: The Ultimate Hacking Guide </h3>
+                    <i data-lucide="terminal"></i>
+                    <h3>Pentesting 101: The Ultimate Hacking Guide</h3>
                     <p>Offensive Security and Ethical Hacking - Udemy.</p>
                     <a href="https://drive.google.com/file/d/1jJuyLDrzb-lMgcRxr-78Od697W5EmaCS/view?usp=sharing" target="_blank" class="btn">VIEW CERTIFICATE</a>
                 </div>
                 <div class="card">
-                    <i data-lucide="monitor"></i>
-                    <h3>INDUSTRIAL INTRUSION</h3>
-                    <p>CTF Challenge - TryHackMe</p>
+                    <i data-lucide="flag"></i>
+                    <h3>INDUSTRIAL INTRUSION <br> <br></h3>
+                    <p>CTF Challenge - <br> TryHackMe</p>
                     <a href="https://drive.google.com/file/d/1MuwPtpOQetR2znXgFa13i4VDIkYH2CW_/view?usp=sharing" target="_blank" class="btn">VIEW CERTIFICATE</a>
                 </div>
             </div>
@@ -331,6 +331,7 @@
     <script>
         lucide.createIcons();
         
+        // --- Matrix Animation ---
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
         const chars = "0101RAFI0101SECURE0101HACK";
@@ -361,12 +362,38 @@
         }
         setInterval(draw, 50);
 
-        function showPage(pageId) {
+        // --- Persistent Page Routing ---
+        function showPage(pageId, updateHash = true) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            document.getElementById('nav-' + pageId).classList.add('active');
+            
+            const targetPage = document.getElementById(pageId);
+            const targetNav = document.getElementById('nav-' + pageId);
+            
+            if (targetPage) {
+                targetPage.classList.add('active');
+                if (targetNav) targetNav.classList.add('active');
+                if (updateHash) window.location.hash = pageId;
+                // Scroll to top of the page content
+                targetPage.scrollTop = 0;
+            }
         }
+
+        // Handle Initial Load and Page Refresh
+        window.addEventListener('load', () => {
+            const currentHash = window.location.hash.replace('#', '');
+            if (currentHash && document.getElementById(currentHash)) {
+                showPage(currentHash, false);
+            } else {
+                showPage('about', true);
+            }
+        });
+
+        // Handle Browser Back/Forward buttons
+        window.addEventListener('hashchange', () => {
+            const currentHash = window.location.hash.replace('#', '');
+            if (currentHash) showPage(currentHash, false);
+        });
     </script>
 </body>
 </html>
